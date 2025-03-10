@@ -54,8 +54,8 @@ class PrometheusTargetsMixin:
         prometheus_sd_config = getattr(obj, "_injected_prometheus_sd_config", {})
 
         # Add domain if available
-        domain = f"{prometheus_sd_config.get('dns_domain', None)}"
-        if port and isinstance(domain, str):
+        domain = f"{prometheus_sd_config.get('dns_zone', None)}"
+        if domain and isinstance(domain, str):
             target += f".{domain}"
         port = prometheus_sd_config.get("port", None)
         if port and isinstance(port, int):
